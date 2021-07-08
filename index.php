@@ -14,6 +14,9 @@ Basic::route('ANY', '/register', function() {
 });
 
 Basic::route('ANY', '/login', function() {
+	$encrypted = base64_decode($_GET['token']);
+	if ( substr($encrypted, 0, 5) !== 'encv1' && ! empty($_GET['token']) ) Basic::apiResponse(401, 'Invalid auth token.'); // Require valid token
+
 	include __DIR__ . '/includes/login.php';
 });
 
