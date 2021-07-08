@@ -1,0 +1,4 @@
+RewriteEngine On
+
+# Deny PHP file access
+RewriteRule ^.*\.php$ - [F,L,NC]
